@@ -16,18 +16,18 @@
             <div style="float: right">
                 <?php
                 if ($this->session->userdata('session_level') == 'umum'):
-                    if ($surat['permintaan_status'] == 'tunggu'):
+                    if ($surat['permintaan_status_surat'] == 'tunggu'):
                         ?>
                         <a href="<?= base_url('surat/update/') . $surat['permintaan_id']?>" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
                            data-placement="bottom"
                            title="Ubah"><i class="icon-pencil menu-icon"></i></a>
-                        <a href="" class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
-                           data-placement="bottom"
+                        <a href="<?= base_url('surat/delete/') . $surat['permintaan_id']?>" class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
+                           data-placement="bottom" onclick="return confirm('Anda yakin ingin menghapus? ')"
                            title="Hapus"><i class="icon-trash menu-icon"></i></a>
                     <?php
                     endif;
                 elseif ($this->session->userdata('session_level') == 'kepala'):
-                    if ($surat['permintaan_status'] == 'tunggu'):
+                    if ($surat['permintaan_status_surat'] == 'tunggu'):
                         ?>
                         <a href="<?= base_url('surat/disposition/') . $surat['permintaan_id'] ?>"
                            class="btn social-btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom"
@@ -51,7 +51,7 @@
                     <tr>
                         <td style="text-align: right">Tanggal Surat</td>
                         <td> :</td>
-                        <td><?= $surat['permintaan_tanggal'] ?></td>
+                        <td><?= date_indo($surat['permintaan_tanggal']) ?></td>
                     </tr>
                 </table>
             </div>

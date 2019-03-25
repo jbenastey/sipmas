@@ -5,6 +5,7 @@
  * Date: 26-Feb-19
  * Time: 22:14
  */
+
 ?>
 <div class="col-12">
     <div class="card">
@@ -26,6 +27,13 @@
                     <div class="alert alert-success animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
                         <button type="button" class="close" data-dismiss="alert"></button>
                         Data Berhasil Diubah
+                    </div>
+                <?php
+                elseif ($this->session->flashdata('alert') == 'delete'):
+                    ?>
+                    <div class="alert alert-danger animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
+                        <button type="button" class="close" data-dismiss="alert"></button>
+                        Data Berhasil Dihapus
                     </div>
                 <?php
                 elseif ($this->session->flashdata('alert') == 'disposition'):
@@ -70,22 +78,23 @@
                             <?php
                             $no = 1;
                             foreach ($surat as $srt):
+                                if ($srt['permintaan_status'] == 'aktif'):
                                 ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $srt['permintaan_nomor'] ?></td>
-                                    <td><?= $srt['permintaan_tanggal'] ?></td>
+                                    <td><?= date_indo($srt['permintaan_tanggal']) ?></td>
                                     <td>
                                         <?php
-                                        if ($srt['permintaan_status'] == 'tunggu'):
+                                        if ($srt['permintaan_status_surat'] == 'tunggu'):
                                             ?>
                                             <label class="badge badge-warning">Waiting</label>
                                         <?php
-                                        elseif ($srt['permintaan_status'] == 'setuju'):
+                                        elseif ($srt['permintaan_status_surat'] == 'setuju'):
                                             ?>
                                             <label class="badge badge-success">Approved</label>
                                         <?php
-                                        elseif ($srt['permintaan_status'] == 'tolak'):
+                                        elseif ($srt['permintaan_status_surat'] == 'tolak'):
                                             ?>
                                             <label class="badge badge-danger">Rejected</label>
                                         <?php
@@ -97,6 +106,7 @@
                                 </tr>
                                 <?php
                                 $no++;
+                                endif;
                             endforeach;
                             ?>
                             </tbody>

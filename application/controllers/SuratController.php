@@ -15,6 +15,7 @@ class SuratController extends CI_Controller
         parent::__construct();
         $model = array('User', 'Surat');
         $this->load->model($model);
+        $this->load->helper('tgl_indo_helper');
         if (!$this->session->has_userdata('session_username')) {
             redirect(site_url('login'));
         }
@@ -123,10 +124,19 @@ class SuratController extends CI_Controller
         }
     }
 
+    public function delete($id){
+        $data = array(
+            'permintaan_status' => 'nonaktif'
+        );
+        $this->Surat->delete_permintaan($id, $data);
+        $this->session->set_flashdata('alert', 'delete');
+        redirect('surat');
+    }
+
     public function disposition($id)
     {
         $data = array(
-            'permintaan_status' => 'setuju'
+            'permintaan_status_surat' => 'setuju'
         );
         $this->Surat->disposition($id, $data);
         $this->session->set_flashdata('alert', 'disposition');
@@ -136,7 +146,7 @@ class SuratController extends CI_Controller
     public function reject($id)
     {
         $data = array(
-            'permintaan_status' => 'tolak'
+            'permintaan_status_surat' => 'tolak'
         );
         $this->Surat->disposition($id, $data);
         $this->session->set_flashdata('alert', 'reject');
