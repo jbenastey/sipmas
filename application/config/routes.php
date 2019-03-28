@@ -60,6 +60,11 @@ $route['surat/delete/(:any)'] = 'SuratController/delete/$1';
 $route['surat/disposition/(:any)'] = 'SuratController/disposition/$1';
 $route['surat/reject/(:any)'] = 'SuratController/reject/$1';
 
+//profil
+$route['profil'] = 'ProfilController/index';
+$route['profil/update'] = 'ProfilController/update';
+$route['profil/foto'] = 'ProfilController/foto';
+$route['profil/password'] = 'ProfilController/password';
 
 //auth
 $route['login'] = 'AuthController/login';

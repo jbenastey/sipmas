@@ -35,7 +35,7 @@ class Dashboard extends CI_Model{
     function count_tahanan(){
         $this->db->select('*');
         $this->db->from('sipmas_permintaan');
-        $this->db->join('sipmas_permintaan_detail','sipmas_permintaan_detail.detail_permintaan_id = sipmas_permintaan.permintaan_id');
+        $this->db->join('sipmas_detail','sipmas_detail.detail_permintaan_id = sipmas_permintaan.permintaan_id');
         $this->db->where('permintaan_status','aktif');
         $query = $this->db->get();
         return $query->num_rows();

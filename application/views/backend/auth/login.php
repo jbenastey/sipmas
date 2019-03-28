@@ -47,9 +47,15 @@
                         </div>
                         <?php } ?>
                         <div class="auth-form-dark text-left p-5">
-                            <h2>Login</h2>
-                            <h4 class="font-weight-light">Hello! let's get started</h4>
-                                <?php echo form_open('login',array('class' =>'pt-5','id' => 'formValidation')) ?>
+                            <div style="text-align: center; margin-bottom: 5px">
+                                <div style="margin: 0 auto">
+                                    <img src="<?= base_url('assets/images/logo-bapas.png')?>" alt="" style="width: 100px">
+                                    <img src="<?= base_url('assets/images/logo-pengayoman.png')?>" alt="" style="width: 100px">
+                                </div>
+                            </div>
+                            <h3 style="text-align: center">Sistem Informasi Penelitian Kemasyarakatan</h3>
+                            <h4 class="font-weight-light" style="text-align: center">Balai Permasyarakatan klas II A Pekanbaru</h4>
+                                <?php echo form_open('login',array('id' => 'formValidation')) ?>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Username</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Username" name="username" autocomplete="off" required>

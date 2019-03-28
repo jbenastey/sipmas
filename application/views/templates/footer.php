@@ -56,6 +56,10 @@
 <script src="<?= base_url('assets/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js')?>"></script>
 <script src="<?= base_url('assets/js/toastDemo.js')?>"></script>
 <!-- endtoast-->
+<!-- Dropify-->
+<script src="<?= base_url('assets/node_modules/dropify/dist/js/dropify.min.js')?>"></script>
+<script src="<?= base_url('assets/js/dropify.js')?>"></script>
+<!-- enddropify-->
 <!-- inject:js -->
 <script src="<?= base_url('assets/js/off-canvas.js')?>"></script>
 <script src="<?= base_url('assets/js/hoverable-collapse.js')?>"></script>

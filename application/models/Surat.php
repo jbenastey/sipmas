@@ -34,7 +34,7 @@ class Surat extends CI_Model{
     function get_surat_detail($id){
         $this->db->select('*');
         $this->db->from('sipmas_permintaan');
-        $this->db->join('sipmas_permintaan_detail','sipmas_permintaan_detail.detail_permintaan_id = sipmas_permintaan.permintaan_id');
+        $this->db->join('sipmas_detail','sipmas_detail.detail_permintaan_id = sipmas_permintaan.permintaan_id');
         $this->db->where('permintaan_id',$id);
         $query = $this->db->get();
         return $query->result_array();
@@ -45,7 +45,7 @@ class Surat extends CI_Model{
     }
 
     function create_permintaan_detail($detailSurat){
-        return $this->db->insert_batch('sipmas_permintaan_detail',$detailSurat);
+        return $this->db->insert_batch('sipmas_detail',$detailSurat);
     }
 
     function update_permintaan($id,$dataSurat){
@@ -54,7 +54,7 @@ class Surat extends CI_Model{
     }
 
     function update_permintaan_detail($detailSurat){
-        return $this->db->update_batch('sipmas_permintaan_detail',$detailSurat,'detail_id');
+        return $this->db->update_batch('sipmas_detail',$detailSurat,'detail_id');
     }
 
     function delete_permintaan($id,$dataSurat){

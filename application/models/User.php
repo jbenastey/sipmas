@@ -27,4 +27,15 @@ class User extends CI_Model{
         $query = $this->db->get_where('sipmas_user',$user);
         return $query->row_array();
     }
+    function get_user_by_id($id){
+        $this->db->select('*');
+        $this->db->from('sipmas_user');
+        $this->db->where('user_id',$id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+    function update_user($id,$dataUser){
+        $this->db->where('user_id',$id);
+        return $this->db->update('sipmas_user',$dataUser);
+    }
 }

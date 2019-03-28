@@ -30,8 +30,7 @@
     <!-- End plugin css for this page -->
 <!--    Animate -->
     <link rel="stylesheet" href="<?= base_url('assets/css/animate.css') ?>">
-
-    <!--    -->
+    <!-- endanimate -->
     <!-- Datatables-->
     <link rel="stylesheet" href="<?= base_url('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') ?>"/>
     <!-- enddatatables-->
@@ -41,6 +40,9 @@
 <!--    Jquery Toast-->
     <link rel="stylesheet" href="<?= base_url('assets/node_modules/jquery-toast-plugin/dist/jquery.toast.min.css')?>"/>
     <!--    endtoast-->
+<!--    Dropify -->
+    <link rel="stylesheet" href="<?= base_url('assets/node_modules/dropify/dist/css/dropify.min.css')?>"/>
+    <!--    enddropify-->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/css/apps.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
@@ -66,7 +68,7 @@
             </ul>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-settings d-none d-lg-block">
-                    <a class="nav-link" href="<?php echo base_url() ?>profile" title="Profil">
+                    <a class="nav-link" href="<?php echo base_url() ?>profil" title="Profil">
                         <i class="icon-user"></i>
                     </a>
                 </li>
@@ -151,6 +153,15 @@
                         </li>
                         <?php
                     elseif ($this->session->userdata('session_level') == 'kepala'):
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('surat')?>">
+                                <i class=" icon-docs menu-icon"></i>
+                                <span class="menu-title">Surat Permintaan</span>
+                            </a>
+                        </li>
+                    <?php
+                    elseif ($this->session->userdata('session_level') == 'kasubsibka' || $this->session->userdata('session_level') == 'kasubsibkd'):
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('surat')?>">
