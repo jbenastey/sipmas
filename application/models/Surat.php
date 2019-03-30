@@ -23,6 +23,14 @@ class Surat extends CI_Model{
         return $query->result_array();
     }
 
+    function get_surat_join(){
+        $this->db->select('*');
+        $this->db->from('sipmas_permintaan');
+        $this->db->join('sipmas_detail','sipmas_detail.detail_permintaan_id = sipmas_permintaan.permintaan_id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function get_surat_by_id($id){
         $this->db->select('*');
         $this->db->from('sipmas_permintaan');

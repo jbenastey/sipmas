@@ -18,10 +18,12 @@
                 if ($this->session->userdata('session_level') == 'umum'):
                     if ($surat['permintaan_status_surat'] == 'tunggu'):
                         ?>
-                        <a href="<?= base_url('surat/update/') . $surat['permintaan_id']?>" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
+                        <a href="<?= base_url('surat/update/') . $surat['permintaan_id'] ?>"
+                           class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
                            data-placement="bottom"
                            title="Ubah"><i class="icon-pencil menu-icon"></i></a>
-                        <a href="<?= base_url('surat/delete/') . $surat['permintaan_id']?>" class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
+                        <a href="<?= base_url('surat/delete/') . $surat['permintaan_id'] ?>"
+                           class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
                            data-placement="bottom" onclick="return confirm('Anda yakin ingin menghapus? ')"
                            title="Hapus"><i class="icon-trash menu-icon"></i></a>
                     <?php
@@ -37,6 +39,23 @@
                            class="btn social-btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom"
                            title="Tolak" onclick="return confirm('Tolak ?')"><i class="icon-close menu-icon"></i></a>
                     <?php
+                    endif;
+                elseif ($this->session->userdata('session_level') == 'kasubsibka' || 'kasubsibkd'):
+                    if ($surat['permintaan_status_surat'] == 'setuju'):
+                        if ($detail[0]['detail_spt_id'] == null):
+                            ?>
+                            <a href="<?= base_url('spt/create/') . $surat['permintaan_id'] ?>"
+                               class="btn social-btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom"
+                               title="Buat SPT"><i class="icon-note menu-icon"></i></a>
+                        <?php
+                        else:
+                            ?>
+                            <div class="btn social-btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom"
+                                 title="SPT Sudah Dibuat">
+                                <i class="icon-check menu-icon"></i>
+                            </div>
+                        <?php
+                        endif;
                     endif;
                 endif;
                 ?>

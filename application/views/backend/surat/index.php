@@ -80,10 +80,38 @@
                             <tbody>
                             <?php
                             $no = 1;
+                            $sesLev = $this->session->userdata('session_level');
                             foreach ($surat as $srt):
                                 if ($srt['permintaan_status'] == 'aktif'):
-                                    if ($srt['permintaan_status_surat'] == 'setuju'):
-                                        ?>
+                                    if ($sesLev == 'kasubsibka' || $sesLev == 'kasubsibkd'):
+                                        if ($srt['permintaan_status_surat'] == 'setuju'):
+                                            ?>
+                                            <tr>
+                                                <td><?= $no ?></td>
+                                                <td><?= $srt['permintaan_nomor'] ?></td>
+                                                <td><?= date_indo($srt['permintaan_tanggal']) ?></td>
+                                                <td>
+                                                    <?php foreach ($detail as $det):
+                                                        if ($srt['permintaan_id'] == $det['detail_permintaan_id']):
+                                                            if ($det['detail_spt_id'] == null):
+                                                                ?>
+                                                                <label class="badge badge-warning">Belum</label> <?php break; ?>
+                                                            <?php
+                                                            else:?>
+                                                                <label class="badge badge-success">Sudah</label> <?php break; ?>
+                                                            <?php
+                                                            endif;
+                                                        endif;
+                                                    endforeach;
+                                                    ?>
+                                                </td>
+                                                <td><a href="<?= base_url('surat/read/') . $srt['permintaan_id'] ?>"
+                                                       class="btn btn-outline-primary">Lihat</a></td>
+                                            </tr>
+                                            <?php
+                                            $no++;
+                                        endif;
+                                    else:?>
                                         <tr>
                                             <td><?= $no ?></td>
                                             <td><?= $srt['permintaan_nomor'] ?></td>
@@ -92,15 +120,15 @@
                                                 <?php
                                                 if ($srt['permintaan_status_surat'] == 'tunggu'):
                                                     ?>
-                                                    <label class="badge badge-warning">Waiting</label>
+                                                    <label class="badge badge-warning">Menunggu</label>
                                                 <?php
                                                 elseif ($srt['permintaan_status_surat'] == 'setuju'):
                                                     ?>
-                                                    <label class="badge badge-success">Approved</label>
+                                                    <label class="badge badge-success">Disetujui</label>
                                                 <?php
                                                 elseif ($srt['permintaan_status_surat'] == 'tolak'):
                                                     ?>
-                                                    <label class="badge badge-danger">Rejected</label>
+                                                    <label class="badge badge-danger">Ditolak</label>
                                                 <?php
                                                 endif;
                                                 ?>

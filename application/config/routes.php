@@ -60,6 +60,13 @@ $route['surat/delete/(:any)'] = 'SuratController/delete/$1';
 $route['surat/disposition/(:any)'] = 'SuratController/disposition/$1';
 $route['surat/reject/(:any)'] = 'SuratController/reject/$1';
 
+//spt
+$route['spt'] = 'SptController/index';
+$route['spt/create/(:any)'] = 'SptController/create/$1';
+$route['spt/read/(:any)'] = 'SptController/read/$1';
+$route['spt/update/(:any)'] = 'SptController/update/$1';
+$route['spt/delete/(:any)'] = 'SptController/delete/$1';
+
 //profil
 $route['profil'] = 'ProfilController/index';
 $route['profil/update'] = 'ProfilController/update';

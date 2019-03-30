@@ -160,6 +160,12 @@
                                 <span class="menu-title">Surat Permintaan</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('spt')?>">
+                                <i class=" icon-docs menu-icon"></i>
+                                <span class="menu-title">Surat Perintah Tugas</span>
+                            </a>
+                        </li>
                     <?php
                     elseif ($this->session->userdata('session_level') == 'kasubsibka' || $this->session->userdata('session_level') == 'kasubsibkd'):
                         ?>
@@ -167,6 +173,12 @@
                             <a class="nav-link" href="<?= base_url('surat')?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Permintaan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('spt')?>">
+                                <i class=" icon-docs menu-icon"></i>
+                                <span class="menu-title">Surat Perintah Tugas</span>
                             </a>
                         </li>
                     <?php

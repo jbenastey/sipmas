@@ -27,6 +27,8 @@ class SuratController extends CI_Controller
 
         $data['surat'] = $this->Surat->get_surat();
 
+        $data['detail'] = $this->Surat->get_surat_join();
+
         $this->load->view('templates/header');
         $this->load->view('backend/surat/index', $data);
         $this->load->view('templates/footer');
@@ -152,7 +154,6 @@ class SuratController extends CI_Controller
         $this->session->set_flashdata('alert', 'reject');
         redirect('surat');
     }
-
 
     function level($lvl)
     {
