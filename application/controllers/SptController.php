@@ -14,8 +14,9 @@ class SptController extends CI_Controller
     {
         parent::__construct();
         $model = array('User', 'Spt', 'Surat');
+        $helper = array('tgl_indo_helper','level_helper');
         $this->load->model($model);
-        $this->load->helper('tgl_indo_helper');
+        $this->load->helper($helper);
         if (!$this->session->has_userdata('session_username')) {
             redirect(site_url('login'));
         }
@@ -23,7 +24,7 @@ class SptController extends CI_Controller
 
     public function index()
     {
-        $data['level'] = $this->level($this->session->userdata['session_level']);
+        $data['level'] = level($this->session->userdata['session_level']);
 
         $data['surat'] = $this->Spt->get_spt();
 
@@ -34,11 +35,13 @@ class SptController extends CI_Controller
 
     public function create($id)
     {
-        $data['level'] = $this->level($this->session->userdata['session_level']);
+        $data['level'] = level($this->session->userdata['session_level']);
 
         $data['surat'] = $this->Surat->get_surat_by_id($id);
 
         $data['detail'] = $this->Surat->get_surat_detail($id);
+
+        $data['nama'] = $this->User->get_user();
 
         if (isset($_POST) && count($_POST) > 0) {
             $generate = substr(time(), 5);
@@ -47,15 +50,13 @@ class SptController extends CI_Controller
             $dataSpt = array(
                 'spt_id' => $sptId,
                 'spt_no_surat' => $this->input->post('nomorSurat'),
-                'spt_nama' => $this->input->post('nama'),
-                'spt_nip' => $this->input->post('nip'),
-                'spt_jabatan' => $this->input->post('jabatan'),
+                'spt_user_id' => $this->input->post('userId'),
                 'spt_berlaku' => $this->input->post('berlakuDari'),
                 'spt_tanggal' => $this->input->post('tanggalSurat'),
             );
 
             $detailSpt = array();
-            for ($i = 0; $i < count($data['detail']); $i++){
+            for ($i = 0; $i < count($data['detail']); $i++) {
                 $detailSpt[$i] = array(
                     'detail_id' => $data['detail'][$i]['detail_id'],
                     'detail_spt_id' => $sptId,
@@ -73,24 +74,80 @@ class SptController extends CI_Controller
         }
     }
 
-    public function read($id){
+    public function read($id)
+    {
         $data['spt'] = $this->Spt->get_spt_by_id($id);
         $data['detail'] = $this->Spt->get_spt_detail($id);
+        $data['user'] = $this->User->get_user_by_id($data['spt']['spt_user_id']);
 
         $this->load->view('templates/header');
         $this->load->view('backend/spt/read', $data);
         $this->load->view('templates/footer');
     }
 
-    function level($lvl)
+    public function update($id)
     {
-        $level = array(
-            'umum' => 'Bagian Umum',
-            'kepala' => 'Kepala Bapas',
-            'kasubsibka' => 'Kasubsi BKA',
-            'kasubsibkd' => 'Kasubsi BKD',
-            'pk' => 'Pembimbing Kemasyarakatan',
+        $data['level'] = level($this->session->userdata['session_level']);
+
+        $data['spt'] = $this->Spt->get_spt_by_id($id);
+
+        $data['detail'] = $this->Spt->get_spt_detail($id);
+
+        $data['nama'] = $this->User->get_user();
+
+        if (isset($_POST) && count($_POST) > 0) {
+            $dataSpt = array(
+                'spt_no_surat' => $this->input->post('nomorSurat'),
+                'spt_user_id' => $this->input->post('userId'),
+                'spt_berlaku' => $this->input->post('berlakuDari'),
+                'spt_tanggal' => $this->input->post('tanggalSurat'),
+            );
+
+            $this->Spt->update_spt($id,$dataSpt);
+            $this->session->set_flashdata('alert', 'updateSpt');
+            redirect('spt');
+        } else {
+            $this->load->view('templates/header');
+            $this->load->view('backend/spt/update', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function delete($id){
+        $data = array(
+            'spt_status' => 'nonaktif'
         );
-        return $level[$lvl];
+        $this->Spt->delete_spt($id, $data);
+        $this->session->set_flashdata('alert', 'deleteSpt');
+        redirect('spt');
+    }
+
+    public function disposition($id)
+    {
+        $data = array(
+            'spt_status_surat' => 'setuju'
+        );
+        $this->Spt->disposition($id, $data);
+        $this->session->set_flashdata('alert', 'dispositionSpt');
+        redirect('spt');
+    }
+
+    public function reject($id)
+    {
+        $data = array(
+            'spt_status_surat' => 'tolak'
+        );
+        $this->Spt->disposition($id, $data);
+        $this->session->set_flashdata('alert', 'rejectSpt');
+        redirect('spt');
+    }
+
+    public function ajaxNama($id){
+        if ($id == 0){
+            echo json_encode(null);
+        }else{
+            $data = $this->User->get_user_by_id($id);
+            echo json_encode($data);
+        }
     }
 }

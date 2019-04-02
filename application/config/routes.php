@@ -66,6 +66,13 @@ $route['spt/create/(:any)'] = 'SptController/create/$1';
 $route['spt/read/(:any)'] = 'SptController/read/$1';
 $route['spt/update/(:any)'] = 'SptController/update/$1';
 $route['spt/delete/(:any)'] = 'SptController/delete/$1';
+$route['spt/disposition/(:any)'] = 'SptController/disposition/$1';
+$route['spt/reject/(:any)'] = 'SptController/reject/$1';
+$route['spt/ajaxNama/(:any)'] = 'SptController/ajaxNama/$1';
+
+//laporan
+$route['laporan'] = 'LaporanController/index';
+
 
 //profil
 $route['profil'] = 'ProfilController/index';

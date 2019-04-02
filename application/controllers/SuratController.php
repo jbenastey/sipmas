@@ -14,8 +14,9 @@ class SuratController extends CI_Controller
     {
         parent::__construct();
         $model = array('User', 'Surat');
+        $helper = array('tgl_indo_helper','level_helper');
         $this->load->model($model);
-        $this->load->helper('tgl_indo_helper');
+        $this->load->helper($helper);
         if (!$this->session->has_userdata('session_username')) {
             redirect(site_url('login'));
         }
@@ -23,7 +24,7 @@ class SuratController extends CI_Controller
 
     public function index()
     {
-        $data['level'] = $this->level($this->session->userdata['session_level']);
+        $data['level'] = level($this->session->userdata['session_level']);
 
         $data['surat'] = $this->Surat->get_surat();
 
@@ -36,7 +37,7 @@ class SuratController extends CI_Controller
 
     public function create()
     {
-        $data['level'] = $this->level($this->session->userdata['session_level']);
+        $data['level'] = level($this->session->userdata['session_level']);
 
         if (isset($_POST) && count($_POST) > 0) {
             $generate = substr(time(), 5);
@@ -153,17 +154,5 @@ class SuratController extends CI_Controller
         $this->Surat->disposition($id, $data);
         $this->session->set_flashdata('alert', 'reject');
         redirect('surat');
-    }
-
-    function level($lvl)
-    {
-        $level = array(
-            'umum' => 'Bagian Umum',
-            'kepala' => 'Kepala Bapas',
-            'kasubsibka' => 'Kasubsi BKA',
-            'kasubsibkd' => 'Kasubsi BKD',
-            'pk' => 'Pembimbing Kemasyarakatan',
-        );
-        return $level[$lvl];
     }
 }

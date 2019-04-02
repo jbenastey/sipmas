@@ -43,6 +43,9 @@
 <!--    Dropify -->
     <link rel="stylesheet" href="<?= base_url('assets/node_modules/dropify/dist/css/dropify.min.css')?>"/>
     <!--    enddropify-->
+<!--    Select 2-->
+    <link rel="stylesheet" href="<?= base_url('assets/node_modules/select2/dist/css/select2.min.css')?>" />
+<!--    endselect2-->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/css/apps.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
@@ -67,6 +70,67 @@
 
             </ul>
             <ul class="navbar-nav navbar-nav-right">
+                <?php
+                if ($this->session->userdata('session_level') == 'pk'):
+                ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                        <i class="icon-bell mx-0"></i>
+                        <span class="count"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                        <a class="dropdown-item">
+                            <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
+                            </p>
+                            <span class="badge badge-pill badge-warning float-right">View all</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-success">
+                                    <i class="icon-info mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-medium">Application Error</h6>
+                                <p class="font-weight-light small-text">
+                                    Just now
+                                </p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-warning">
+                                    <i class="icon-speech mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-medium">Settings</h6>
+                                <p class="font-weight-light small-text">
+                                    Private message
+                                </p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-info">
+                                    <i class="icon-envelope mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-medium">New user registration</h6>
+                                <p class="font-weight-light small-text">
+                                    2 days ago
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <?php
+                endif;
+                ?>
                 <li class="nav-item nav-settings d-none d-lg-block">
                     <a class="nav-link" href="<?php echo base_url() ?>profil" title="Profil">
                         <i class="icon-user"></i>
@@ -131,7 +195,7 @@
                                     <?= $this->session->userdata['session_name'] ?>
                                 </p>
                                 <p class="designation">
-                                    <?= $this->session->userdata['session_level'] ?>
+                                    <?= level($this->session->userdata['session_level']) ?>
                                 </p>
                             </div>
                         </div>
@@ -179,6 +243,21 @@
                             <a class="nav-link" href="<?= base_url('spt')?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Perintah Tugas</span>
+                            </a>
+                        </li>
+                    <?php
+                    elseif ($this->session->userdata('session_level') == 'pk'):
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('spt')?>">
+                                <i class=" icon-docs menu-icon"></i>
+                                <span class="menu-title">Surat Perintah Tugas</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('laporan')?>">
+                                <i class=" icon-docs menu-icon"></i>
+                                <span class="menu-title">Laporan Penelitian</span>
                             </a>
                         </li>
                     <?php

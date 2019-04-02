@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
     {
         parent::__construct();
         $this->load->model(array('User','Dashboard'));
+        $this->load->helper(array('tgl_indo_helper','level_helper'));
         if (!$this->session->has_userdata('session_username')){
             redirect(site_url('login'));
         }
@@ -14,7 +15,7 @@ class Welcome extends CI_Controller {
 
     public function index()
 	{
-	    $data['level'] = $this->level($this->session->userdata['session_level']);
+	    $data['level'] = level($this->session->userdata['session_level']);
 	    $data['surat'] = $this->Dashboard->count_permintaan();
         $data['setuju'] = $this->Dashboard->count_permintaan_setuju('setuju');
         $data['tunggu'] = $this->Dashboard->count_permintaan_setuju('tunggu');
@@ -23,15 +24,4 @@ class Welcome extends CI_Controller {
         $this->load->view('backend/index',$data);
         $this->load->view('templates/footer');
 	}
-
-	function level($lvl){
-        $level = array(
-          'umum' => 'Bagian Umum',
-          'kepala' => 'Kepala Bapas',
-            'kasubsibka' => 'Kasubsi BKA',
-            'kasubsibkd' => 'Kasubsi BKD',
-            'pk' => 'Pembimbing Kemasyarakatan',
-        );
-        return $level[$lvl];
-    }
 }

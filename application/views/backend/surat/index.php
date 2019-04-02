@@ -56,18 +56,16 @@
                 endif;
                 ?>
                 <div class="col-12">
-                    <div>
-                        <?php
-                        if ($this->session->userdata('session_level') == 'umum'):
-                            ?>
-                            <a href="<?= base_url('surat/create') ?>" class="btn btn-primary"><strong>+</strong> Tambah
-                                Surat Permintaan</a>
-                        <?php
-                        endif;
-                        ?>
-                    </div>
+
                     <div class="table-responsive">
                         <table id="order-listing" class="table">
+                                <?php
+                                if ($this->session->userdata('session_level') == 'umum'):
+                                    ?>
+                                    <a href="<?= base_url('surat/create') ?>" class="btn btn-primary btn-sm" style="float: right; margin-left: 5px"><strong>+</strong>Tambah</a>
+                                <?php
+                                endif;
+                                ?>
                             <thead>
                             <tr>
                                 <th>No</th>

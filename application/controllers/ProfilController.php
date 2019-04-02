@@ -14,8 +14,9 @@ class ProfilController extends CI_Controller
     {
         parent::__construct();
         $model = array('User');
+        $helper = array('tgl_indo_helper','level','form','url');
         $this->load->model($model);
-        $this->load->helper(array('tgl_indo_helper','form','url'));
+        $this->load->helper($helper);
         if (!$this->session->has_userdata('session_username')) {
             redirect(site_url('login'));
         }
@@ -23,7 +24,7 @@ class ProfilController extends CI_Controller
 
     public function index()
     {
-        $data['level'] = $this->level($this->session->userdata['session_level']);
+        $data['level'] = level($this->session->userdata['session_level']);
 
         $id = $this->session->userdata['session_id'];
 
@@ -36,7 +37,7 @@ class ProfilController extends CI_Controller
 
     public function update()
     {
-        $data['level'] = $this->level($this->session->userdata['session_level']);
+        $data['level'] = level($this->session->userdata['session_level']);
 
         $id = $this->session->userdata['session_id'];
 
@@ -61,7 +62,7 @@ class ProfilController extends CI_Controller
     }
 
     public function foto(){
-        $data['level'] = $this->level($this->session->userdata['session_level']);
+        $data['level'] = level($this->session->userdata['session_level']);
 
         $id = $this->session->userdata['session_id'];
 
@@ -110,17 +111,5 @@ class ProfilController extends CI_Controller
             $this->load->view('backend/profil/index', $data);
             $this->load->view('templates/footer');
         }
-    }
-
-    function level($lvl)
-    {
-        $level = array(
-            'umum' => 'Bagian Umum',
-            'kepala' => 'Kepala Bapas',
-            'kasubsibka' => 'Kasubsi BKA',
-            'kasubsibkd' => 'Kasubsi BKD',
-            'pk' => 'Pembimbing Kemasyarakatan',
-        );
-        return $level[$lvl];
     }
 }

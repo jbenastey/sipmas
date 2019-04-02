@@ -23,22 +23,44 @@
                         if ($sesLev == 'kepala'):
                             if ($spt['spt_status_surat'] == 'tunggu'):
                                 ?>
-                                <a href="#" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
+                                <a href="<?= base_url('spt/disposition/') . $spt['spt_id'] ?>"
+                                   class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
                                    data-placement="bottom" onclick="return confirm('Disposisi ? ')"
                                    title="Disposisi"><i class="icon-check menu-icon"></i></a>
-                                <a href="#" class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
+                                <a href="<?= base_url('spt/reject/') . $spt['spt_id'] ?>"
+                                   class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
                                    data-placement="bottom" onclick="return confirm('Tolak ? ')"
                                    title="Tolak"><i class="icon-close menu-icon"></i></a>
                             <?php
                             endif;
-                        else:?>
-                            <a href="#" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
-                               data-placement="bottom"
-                               title="Ubah"><i class="icon-pencil menu-icon"></i></a>
-                            <a href="#" class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
-                               data-placement="bottom" onclick="return confirm('Anda yakin ingin menghapus? ')"
-                               title="Hapus"><i class="icon-trash menu-icon"></i></a>
-                        <?php
+                        else:
+                            if ($spt['spt_status_surat'] == 'setuju'):
+                                if ($sesLev == 'pk'):?>
+                                    <a href="#" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
+                                       data-placement="bottom"
+                                       title="Cetak"><i class="icon-printer menu-icon"></i></a>
+                                <?php
+                                else:?>
+                                    <a href="#" class="btn social-btn btn-primary btn-xs" data-toggle="tooltip"
+                                       data-placement="bottom"
+                                       title="Kirim Notifikasi"><i class="icon-paper-plane menu-icon"></i></a>
+                                    <a href="#" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
+                                       data-placement="bottom"
+                                       title="Cetak"><i class="icon-printer menu-icon"></i></a>
+                                <?php
+                                endif;
+                            else:
+                                ?>
+                                <a href="<?= base_url('spt/update/') . $spt['spt_id'] ?>"
+                                   class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
+                                   data-placement="bottom"
+                                   title="Ubah"><i class="icon-pencil menu-icon"></i></a>
+                                <a href="<?= base_url('spt/delete/') . $spt['spt_id'] ?>"
+                                   class="btn social-btn btn-danger btn-xs" data-toggle="tooltip"
+                                   data-placement="bottom" onclick="return confirm('Anda yakin ingin menghapus? ')"
+                                   title="Hapus"><i class="icon-trash menu-icon"></i></a>
+                            <?php
+                            endif;
                         endif;
                         ?>
                     </div>
@@ -59,7 +81,7 @@
                         <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama"
-                                   value="<?= $spt['spt_nama'] ?>" readonly>
+                                   value="<?= $user['user_nama'] ?>" readonly>
                         </div>
                     </div>
                 </div>
@@ -76,8 +98,8 @@
                     <div class="form-group row">
                         <label for="nip" class="col-sm-3 col-form-label">NIP</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="nip" placeholder="Masukkan NIP" name="nip"
-                                   value="<?= $spt['spt_nip'] ?>" readonly>
+                            <input type="text" class="form-control" id="nip" placeholder="" name="nip"
+                                   value="<?= $user['user_nip'] ?>" readonly>
                         </div>
                     </div>
                 </div>
@@ -94,8 +116,8 @@
                     <div class="form-group row">
                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="jabatan" placeholder="Masukkan Jabatan"
-                                   name="jabatan" value="<?= $spt['spt_jabatan'] ?>" readonly>
+                            <input type="text" class="form-control" id="jabatan" placeholder=""
+                                   name="jabatan" value="<?= $user['user_jabatan'] ?>" readonly>
                         </div>
                     </div>
                 </div>

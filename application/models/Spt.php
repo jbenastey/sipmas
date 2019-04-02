@@ -40,7 +40,22 @@ class Spt extends CI_Model{
         return $query->result_array();
     }
 
-    function create_spt($dataSpt){
-        return $this->db->insert('sipmas_spt',$dataSpt);
+    function create_spt($data){
+        return $this->db->insert('sipmas_spt',$data);
+    }
+
+    function update_spt($id,$data){
+        $this->db->where('spt_id',$id);
+        return $this->db->update('sipmas_spt',$data);
+    }
+
+    function delete_spt($id,$data){
+        $this->db->where('spt_id',$id);
+        return $this->db->update('sipmas_spt',$data);
+    }
+
+    function disposition($id,$data){
+        $this->db->where('spt_id', $id);
+        return $this->db->update('sipmas_spt', $data);
     }
 }

@@ -47,6 +47,7 @@
 <!-- enddatepicker-->
 <!-- Dynamic Field-->
 <script src="<?= base_url('assets/js/apps/dynamic-field.js')?>"></script>
+<script src="<?= base_url('assets/js/apps/apps.js')?>"></script>
 <!-- enddynamic-->
 <!-- Tooltips-->
 <script src="<?= base_url('assets/js/tooltips.js')?>"></script>
@@ -60,13 +61,16 @@
 <script src="<?= base_url('assets/node_modules/dropify/dist/js/dropify.min.js')?>"></script>
 <script src="<?= base_url('assets/js/dropify.js')?>"></script>
 <!-- enddropify-->
+<!-- Select2-->
+<script src="<?= base_url('assets/node_modules/select2/dist/js/select2.min.js')?>"></script>
+<script src="<?= base_url('assets/js/select2.js')?>"></script>
+<!-- endselect2-->
 <!-- inject:js -->
 <script src="<?= base_url('assets/js/off-canvas.js')?>"></script>
 <script src="<?= base_url('assets/js/hoverable-collapse.js')?>"></script>
 <script src="<?= base_url('assets/js/misc.js')?>"></script>
 <script src="<?= base_url('assets/js/settings.js')?>"></script>
 <script src="<?= base_url('assets/js/todolist.js')?>"></script>
-<script src="<?= base_url('assets/js/apps/apps.js')?>"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="<?= base_url('assets/js/dashboard.js')?>"></script>
