@@ -103,7 +103,7 @@
                                         <?php
                                         $no++;
                                     elseif ($this->session->userdata('session_level') == 'pk'):
-                                        if ($spt['spt_user_id'] == $this->session->userdata('session_id')):
+                                        if ($spt['spt_user_id'] == $this->session->userdata('session_id') && $spt['spt_status_surat'] == 'setuju'):
                                         ?>
                                         <tr>
                                             <td><?= $no ?></td>

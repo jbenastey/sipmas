@@ -150,4 +150,16 @@ class SptController extends CI_Controller
             echo json_encode($data);
         }
     }
+
+    public function notification($id){
+        $data = $this->Spt->get_spt_by_id($id);
+        $dataNotif = array(
+            'notifikasi_user_id' => $data['spt_user_id'],
+            'notifikasi_spt_id' => $data['spt_id']
+        );
+        $this->Spt->create_notification($dataNotif);
+
+        $this->session->set_flashdata('alert', 'notification');
+        redirect('spt/read/'.$id);
+    }
 }

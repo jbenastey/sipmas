@@ -14,7 +14,7 @@ class ProfilController extends CI_Controller
     {
         parent::__construct();
         $model = array('User');
-        $helper = array('tgl_indo_helper','level','form','url');
+        $helper = array('tgl_indo_helper', 'level', 'form', 'url');
         $this->load->model($model);
         $this->load->helper($helper);
         if (!$this->session->has_userdata('session_username')) {
@@ -29,6 +29,8 @@ class ProfilController extends CI_Controller
         $id = $this->session->userdata['session_id'];
 
         $data['profil'] = $this->User->get_user_by_id($id);
+
+        $data['error'] = '';
 
         $this->load->view('templates/header');
         $this->load->view('backend/profil/index', $data);
@@ -50,7 +52,7 @@ class ProfilController extends CI_Controller
                 'user_nomor_hp' => $this->input->post('userNomor')
             );
 
-            $this->User->update_user($id,$dataUser);
+            $this->User->update_user($id, $dataUser);
 
             $this->session->set_flashdata('alert', 'updateUser');
             redirect('profil');
@@ -61,24 +63,47 @@ class ProfilController extends CI_Controller
         }
     }
 
-    public function foto(){
+    public function foto()
+    {
         $data['level'] = level($this->session->userdata['session_level']);
 
         $id = $this->session->userdata['session_id'];
+        $nama = $this->session->userdata['session_name'];
 
         $data['profil'] = $this->User->get_user_by_id($id);
 
+        $data['error'] = '';
+
         if (isset($_POST) && count($_POST) > 0) {
-            $config['upload_path'] = './uploads/';
+            $config['upload_path'] = './assets/upload/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '5120';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-
+            $config['max_size'] = 0;
+            $config['max_width'] = 1024;
+            $config['max_height'] = 768;
             //$this->User->update_user($id,$dataFoto);
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 
-            $this->session->set_flashdata('alert', 'updateFoto');
-            redirect('profil');
+            if (!$this->upload->do_upload('userFoto')) {
+
+                $data['error'] = array('error' => $this->upload->display_errors());
+
+//
+//                $this->load->view('templates/header');
+//                $this->load->view('backend/profil/index', $data);
+//                $this->load->view('templates/footer');
+            } else {
+                $foto = $nama . '_' . $this->upload->data('file_name');
+
+                $dataUpload = array(
+                    'user_foto' => $foto
+                );
+
+                $this->User->update_user($id, $dataUpload);
+                $this->session->set_flashdata('alert', 'updateFoto');
+                redirect('profil');
+            }
+
         } else {
             $this->load->view('templates/header');
             $this->load->view('backend/profil/index', $data);
@@ -86,7 +111,8 @@ class ProfilController extends CI_Controller
         }
     }
 
-    public function password(){
+    public function password()
+    {
         $id = $this->session->userdata['session_id'];
 
         $data['profil'] = $this->User->get_user_by_id($id);
@@ -95,14 +121,14 @@ class ProfilController extends CI_Controller
 
         if (isset($_POST) && count($_POST) > 0) {
             $oldPass = md5($this->input->post('oldPass'));
-            if ($dataUser['user_password'] == $oldPass){
+            if ($dataUser['user_password'] == $oldPass) {
                 $newPass = array(
                     'user_password' => md5($this->input->post('newPass'))
                 );
-                $this->User->update_user($id,$newPass);
+                $this->User->update_user($id, $newPass);
                 $this->session->set_flashdata('alert', 'updatePassword');
                 redirect('profil');
-            }else{
+            } else {
                 $this->session->set_flashdata('alert', 'updatePasswordFailed');
                 redirect('profil');
             }

@@ -10,6 +10,16 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
+            <?php
+            if ($this->session->flashdata('alert') == 'notification'):
+                ?>
+                <div class="alert alert-success animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
+                    <button type="button" class="close" data-dismiss="alert"></button>
+                    Asdas
+                </div>
+            <?php
+            endif;
+            ?>
             <div class="row">
                 <div class="col-10">
                     <h4 class="card-title">
@@ -42,8 +52,8 @@
                                 <?php
                                 else:?>
                                     <a href="#" class="btn social-btn btn-primary btn-xs" data-toggle="tooltip"
-                                       data-placement="bottom"
-                                       title="Kirim Notifikasi"><i class="icon-paper-plane menu-icon"></i></a>
+                                       data-placement="bottom" onclick="return confirm('Kirim Pengingat ?')"
+                                       title="Kirim Pengingat"><i class="icon-paper-plane menu-icon"></i></a>
                                     <a href="#" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="Cetak"><i class="icon-printer menu-icon"></i></a>

@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sistem Informasi Penelitian Kemasyarakatan</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="<?= base_url('assets/node_modules/mdi/css/materialdesignicons.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/node_modules/mdi/css/materialdesignicons.min.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/node_modules/simple-line-icons/css/simple-line-icons.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/node_modules/flag-icon-css/css/flag-icon.min.css') ?>">
     <link rel="stylesheet"
@@ -28,24 +28,26 @@
     <link rel="stylesheet"
           href="<?= base_url('assets/node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css') ?>">
     <!-- End plugin css for this page -->
-<!--    Animate -->
+    <!--    Animate -->
     <link rel="stylesheet" href="<?= base_url('assets/css/animate.css') ?>">
     <!-- endanimate -->
     <!-- Datatables-->
-    <link rel="stylesheet" href="<?= base_url('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') ?>"/>
+    <link rel="stylesheet"
+          href="<?= base_url('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') ?>"/>
     <!-- enddatatables-->
     <!-- Datepicker -->
-    <link rel="stylesheet" href="<?= base_url('assets/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>"/>
+    <link rel="stylesheet"
+          href="<?= base_url('assets/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>"/>
     <!-- enddatepicker-->
-<!--    Jquery Toast-->
-    <link rel="stylesheet" href="<?= base_url('assets/node_modules/jquery-toast-plugin/dist/jquery.toast.min.css')?>"/>
+    <!--    Jquery Toast-->
+    <link rel="stylesheet" href="<?= base_url('assets/node_modules/jquery-toast-plugin/dist/jquery.toast.min.css') ?>"/>
     <!--    endtoast-->
-<!--    Dropify -->
-    <link rel="stylesheet" href="<?= base_url('assets/node_modules/dropify/dist/css/dropify.min.css')?>"/>
+    <!--    Dropify -->
+    <link rel="stylesheet" href="<?= base_url('assets/node_modules/dropify/dist/css/dropify.min.css') ?>"/>
     <!--    enddropify-->
-<!--    Select 2-->
-    <link rel="stylesheet" href="<?= base_url('assets/node_modules/select2/dist/css/select2.min.css')?>" />
-<!--    endselect2-->
+    <!--    Select 2-->
+    <link rel="stylesheet" href="<?= base_url('assets/node_modules/select2/dist/css/select2.min.css') ?>"/>
+    <!--    endselect2-->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/css/apps.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
@@ -70,67 +72,6 @@
 
             </ul>
             <ul class="navbar-nav navbar-nav-right">
-                <?php
-                if ($this->session->userdata('session_level') == 'pk'):
-                ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                        <i class="icon-bell mx-0"></i>
-                        <span class="count"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                        <a class="dropdown-item">
-                            <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
-                            </p>
-                            <span class="badge badge-pill badge-warning float-right">View all</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-success">
-                                    <i class="icon-info mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-medium">Application Error</h6>
-                                <p class="font-weight-light small-text">
-                                    Just now
-                                </p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-warning">
-                                    <i class="icon-speech mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-medium">Settings</h6>
-                                <p class="font-weight-light small-text">
-                                    Private message
-                                </p>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-info">
-                                    <i class="icon-envelope mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-medium">New user registration</h6>
-                                <p class="font-weight-light small-text">
-                                    2 days ago
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <?php
-                endif;
-                ?>
                 <li class="nav-item nav-settings d-none d-lg-block">
                     <a class="nav-link" href="<?php echo base_url() ?>profil" title="Profil">
                         <i class="icon-user"></i>
@@ -201,7 +142,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url()?>">
+                        <a class="nav-link" href="<?= base_url() ?>">
                             <i class="icon-rocket menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -210,22 +151,22 @@
                     if ($this->session->userdata('session_level') == 'umum'):
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('surat')?>">
+                            <a class="nav-link" href="<?= base_url('surat') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Permintaan</span>
                             </a>
                         </li>
-                        <?php
+                    <?php
                     elseif ($this->session->userdata('session_level') == 'kepala'):
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('surat')?>">
+                            <a class="nav-link" href="<?= base_url('surat') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Permintaan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('spt')?>">
+                            <a class="nav-link" href="<?= base_url('spt') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Perintah Tugas</span>
                             </a>
@@ -234,13 +175,13 @@
                     elseif ($this->session->userdata('session_level') == 'kasubsibka' || $this->session->userdata('session_level') == 'kasubsibkd'):
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('surat')?>">
+                            <a class="nav-link" href="<?= base_url('surat') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Permintaan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('spt')?>">
+                            <a class="nav-link" href="<?= base_url('spt') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Perintah Tugas</span>
                             </a>
@@ -249,13 +190,13 @@
                     elseif ($this->session->userdata('session_level') == 'pk'):
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('spt')?>">
+                            <a class="nav-link" href="<?= base_url('spt') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Perintah Tugas</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('laporan')?>">
+                            <a class="nav-link" href="<?= base_url('laporan') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Laporan Penelitian</span>
                             </a>

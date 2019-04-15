@@ -65,6 +65,9 @@
 <script src="<?= base_url('assets/node_modules/select2/dist/js/select2.min.js')?>"></script>
 <script src="<?= base_url('assets/js/select2.js')?>"></script>
 <!-- endselect2-->
+<!-- Modal-->
+<script src="<?= base_url('assets/js/modal-demo.js')?>"></script>
+<!-- endmodal-->
 <!-- inject:js -->
 <script src="<?= base_url('assets/js/off-canvas.js')?>"></script>
 <script src="<?= base_url('assets/js/hoverable-collapse.js')?>"></script>

@@ -16,8 +16,14 @@ class Laporan extends CI_Model{
         $this->load->database();
     }
     function get_laporan(){
+        $this->db->select('*');
+        $this->db->from('sipmas_laporan');
+        $this->db->join('sipmas_detail','sipmas_detail.detail_id = sipmas_laporan.laporan_detail_id');
         $this->db->order_by('laporan_date_created','DESC');
-        $query = $this->db->get('sipmas_laporan');
+        $query = $this->db->get();
         return $query->result_array();
+    }
+    function create_laporan($data){
+        return $this->db->insert('sipmas_laporan',$data);
     }
 }

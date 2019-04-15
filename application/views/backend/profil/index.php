@@ -8,6 +8,7 @@
 ?>
 <div class="row user-profile">
     <?php
+    echo $error;
     if ($this->session->flashdata('alert') == 'updateUser'):
         ?>
         <div class="alert alert-success animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
@@ -20,6 +21,13 @@
         <div class="alert alert-success animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
             <button type="button" class="close" data-dismiss="alert"></button>
             Password Diperbarui
+        </div>
+    <?php
+    elseif ($this->session->flashdata('alert') == 'updateFoto'):
+        ?>
+        <div class="alert alert-success animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            Foto Diperbarui
         </div>
     <?php
     elseif ($this->session->flashdata('alert') == 'updatePasswordFailed'):
