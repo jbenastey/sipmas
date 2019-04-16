@@ -41,6 +41,7 @@ class AuthController extends CI_Controller {
             $idAdmin = $admin['user_id'];
             $levelAdmin = $admin['user_hak_akses'];
             $namaAdmin = $admin['user_nama'];
+            $fotoAdmin = $admin['user_foto'];
             $data['levelPengguna'] = $admin['level'];
             if ($validate >0) {
                 $data_session = array(
@@ -48,7 +49,8 @@ class AuthController extends CI_Controller {
                     'session_username' => $username,
                     'session_name' => $namaAdmin,
                     'session_status' => 'login',
-                    'session_level' => $levelAdmin
+                    'session_level' => $levelAdmin,
+                    'session_foto' => $fotoAdmin
                 );
                 $this->session->set_flashdata('alert', 'success_login');
                 $this->session->set_userdata($data_session);

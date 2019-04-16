@@ -65,35 +65,19 @@ class ProfilController extends CI_Controller
 
     public function foto()
     {
-        $data['level'] = level($this->session->userdata['session_level']);
-
-        $id = $this->session->userdata['session_id'];
-        $nama = $this->session->userdata['session_name'];
-
-        $data['profil'] = $this->User->get_user_by_id($id);
-
-        $data['error'] = '';
-
-        if (isset($_POST) && count($_POST) > 0) {
+        if (isset($_POST)) {
+            $id = $this->session->userdata['session_id'];
+            $nama = $this->session->userdata['session_name'];
             $config['upload_path'] = './assets/upload/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 0;
-            $config['max_width'] = 1024;
-            $config['max_height'] = 768;
-            //$this->User->update_user($id,$dataFoto);
+            $config['allowed_types'] = 'jpg|png';
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
 
             if (!$this->upload->do_upload('userFoto')) {
-
-                $data['error'] = array('error' => $this->upload->display_errors());
-
-//
-//                $this->load->view('templates/header');
-//                $this->load->view('backend/profil/index', $data);
-//                $this->load->view('templates/footer');
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
             } else {
-                $foto = $nama . '_' . $this->upload->data('file_name');
+                $foto = $this->upload->data('file_name');
 
                 $dataUpload = array(
                     'user_foto' => $foto
@@ -103,11 +87,8 @@ class ProfilController extends CI_Controller
                 $this->session->set_flashdata('alert', 'updateFoto');
                 redirect('profil');
             }
-
         } else {
-            $this->load->view('templates/header');
-            $this->load->view('backend/profil/index', $data);
-            $this->load->view('templates/footer');
+            redirect('profil');
         }
     }
 

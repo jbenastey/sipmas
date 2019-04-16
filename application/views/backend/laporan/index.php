@@ -31,14 +31,16 @@
                             <?php
                             $no = 1;
                             foreach ($laporan as $l) :
+                                if ($l['laporan_user_id'] == $this->session->userdata('session_id')):
                                 ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $l['detail_nama'] ?></td>
-                                    <td><a href="#" class="btn btn-outline-primary btn-sm"><i class="fa fa-download"></i>Download</a></td>
+                                    <td><a href="<?= base_url('assets/upload/laporan/'.$l['laporan_upload'])?>" class="btn btn-outline-primary btn-sm" onclick="return confirm('Download ?')"><i class="fa fa-download"></i>Download</a></td>
                                 </tr>
                                 <?php
                                 $no++;
+                                endif;
                             endforeach;
                             ?>
                             </tbody>

@@ -75,7 +75,7 @@ $route['spt/notification/(:any)'] = 'SptController/notification/$1';
 //laporan
 $route['laporan'] = 'LaporanController/index';
 $route['laporan/create'] = 'LaporanController/create';
-
+$route['laporan/download/(:any)'] = 'LaporanController/download/$1';
 
 //profil
 $route['profil'] = 'ProfilController/index';

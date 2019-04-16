@@ -8,12 +8,13 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LaporanController extends CI_Controller{
+class LaporanController extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
-        $model = array('User', 'Spt', 'Surat','Laporan');
-        $helper = array('tgl_indo_helper','level_helper','form','url');
+        $model = array('User', 'Spt', 'Surat', 'Laporan');
+        $helper = array('tgl_indo_helper', 'level_helper', 'form', 'url');
         $this->load->model($model);
         $this->load->helper($helper);
         if (!$this->session->has_userdata('session_username')) {
@@ -36,8 +37,9 @@ class LaporanController extends CI_Controller{
         $this->load->view('templates/footer');
     }
 
-    public function create(){
-        if (isset($_POST) && count($_POST) > 0){
+    public function create()
+    {
+        if (isset($_POST) && count($_POST) > 0) {
             $config['upload_path'] = './assets/upload/laporan/';
             $config['allowed_types'] = 'pdf|doc|docx';
             $config['max_size'] = 0;
@@ -50,6 +52,7 @@ class LaporanController extends CI_Controller{
             if (!$this->upload->do_upload('laporan')) {
 
                 $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
 
                 redirect('laporan');
             } else {
@@ -58,17 +61,19 @@ class LaporanController extends CI_Controller{
                 $foto = $this->upload->data('file_name');
 
                 $dataUpload = array(
-                    'laporan_upload'    => $foto,
-                    'laporan_user_id'   => $this->session->userdata('session_id'),
+                    'laporan_upload' => $foto,
+                    'laporan_user_id' => $this->session->userdata('session_id'),
                     'laporan_detail_id' => $detailId,
-                    );
+                );
 
                 $this->Laporan->create_laporan($dataUpload);
                 redirect('laporan');
             }
-        }
-        else{
+        } else {
             redirect('laporan');
         }
+    }
+    public function download($id){
+
     }
 }

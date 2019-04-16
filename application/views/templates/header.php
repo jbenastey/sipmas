@@ -127,8 +127,7 @@
                     <li class="nav-item nav-profile">
                         <div class="nav-link">
                             <div class="profile-image">
-                                <img src="<?= base_url('assets/images/faces/face10.jpg') ?>" alt="image"/>
-                                <span class="online-status online"></span>
+                                <img src="<?= base_url('assets/upload/images/'.$this->session->userdata['session_foto']) ?>" alt="upload foto"/>
                                 <!--change class online to offline or busy as needed-->
                             </div>
                             <div class="profile-name">

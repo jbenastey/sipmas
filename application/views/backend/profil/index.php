@@ -45,7 +45,7 @@
                 <div class="card">
                     <div class="card-body avatar">
                         <h4 class="card-title">Info</h4>
-                        <img src="<?= base_url('assets/images/faces/face6.jpg') ?>" alt="">
+                        <img src="<?= base_url('assets/upload/images/'.$profil['user_foto']) ?>" alt="">
                         <p class="name"><?= $profil['user_nama'] ?></p>
                         <p class="designation">- <?= $level ?> -</p>
                         <a class="d-block text-center text-dark" href="#"><?= $profil['user_email'] ?></a>
@@ -65,23 +65,10 @@
                                 <p>Completed</p></li>
                         </ul>
                         <div class="wrapper about-user">
-                            <h4 class="card-title mt-4 mb-3">About</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam consectetur ex quod.</p>
+                            <h4 class="card-title mt-4 mb-3"></h4>
+                            <p style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam consectetur ex quod.</p>
                         </div>
-                        <div class="info-links">
-                            <a class="website" href="http://urbanui.com/">
-                                <i class="mdi mdi-earth text-gray"></i>
-                                <span>http://urbanui.com/</span>
-                            </a>
-                            <a class="social-link" href="#">
-                                <i class="mdi mdi-facebook text-gray"></i>
-                                <span>https://www.facebook.com/johndoe</span>
-                            </a>
-                            <a class="social-link" href="#">
-                                <i class="mdi mdi-linkedin text-gray"></i>
-                                <span>https://www.linkedin.com/johndoe</span>
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -134,13 +121,9 @@
                             <?= form_close() ?>
                         </div><!-- tab content ends -->
                         <div class="tab-pane fade" id="avatar" role="tabpanel" aria-labelledby="avatar-tab">
-                            <div class="wrapper mb-5 mt-4">
-                                <span class="badge badge-warning text-white">Note : </span>
-                                <p class="d-inline ml-3 text-muted">Image size is limited to not greater than 5MB .</p>
-                            </div>
                             <?php echo form_open('profil/foto', array('class' => 'form forms-sample', 'id' => 'formValidation', 'enctype' => 'multipart/form-data')) ?>
-                                <input type="file" class="dropify" data-max-file-size="5mb"
-                                       data-default-file="<?= base_url('assets/images/faces/face6.jpg') ?>" name="userFoto"/>
+                                <input type="file" class="dropify" data-default-file="<?= base_url('assets/upload/images/'.$profil['user_foto']) ?>"
+                                       name="userFoto" required/>
                                 <div class="form-group mt-5">
                                     <button type="submit" class="btn btn-success mr-2">Update</button>
                                     <button class="btn btn-outline-danger">Batal</button>
