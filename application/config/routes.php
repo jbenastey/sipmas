@@ -71,6 +71,9 @@ $route['spt/reject/(:any)'] = 'SptController/reject/$1';
 $route['spt/ajaxNama/(:any)'] = 'SptController/ajaxNama/$1';
 //notifikasi
 $route['spt/notification/(:any)'] = 'SptController/notification/$1';
+//cetak
+$route['spt/cetak/(:any)'] = 'SptController/cetak/$1';
+
 
 //laporan
 $route['laporan'] = 'LaporanController/index';
@@ -86,6 +89,7 @@ $route['profil/password'] = 'ProfilController/password';
 //auth
 $route['login'] = 'AuthController/login';
 $route['logout'] = 'AuthController/logout';
+$route['register'] = 'AuthController/register';
 
 
 $route['default_controller'] = 'welcome';

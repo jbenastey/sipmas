@@ -19,6 +19,7 @@ class Laporan extends CI_Model{
         $this->db->select('*');
         $this->db->from('sipmas_laporan');
         $this->db->join('sipmas_detail','sipmas_detail.detail_id = sipmas_laporan.laporan_detail_id');
+        $this->db->join('sipmas_user','sipmas_user.user_id = sipmas_laporan.laporan_user_id');
         $this->db->order_by('laporan_date_created','DESC');
         $query = $this->db->get();
         return $query->result_array();

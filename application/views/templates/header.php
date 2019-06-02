@@ -57,7 +57,7 @@
 <body class="sidebar-fixed">
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row d-print-none">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
             <a class="navbar-brand brand-logo" href="#"><img src="<?= base_url('assets/images/logo-bapas.png') ?>"
                                                              alt="logo" style="width: 10%"/></a>
@@ -122,7 +122,7 @@
             </div>
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <nav class="sidebar sidebar-offcanvas   d-print-none" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
                         <div class="nav-link">
@@ -170,6 +170,12 @@
                                 <span class="menu-title">Surat Perintah Tugas</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('laporan') ?>">
+                                <i class=" icon-docs menu-icon"></i>
+                                <span class="menu-title">Laporan Penelitian</span>
+                            </a>
+                        </li>
                     <?php
                     elseif ($this->session->userdata('session_level') == 'kasubsibka' || $this->session->userdata('session_level') == 'kasubsibkd'):
                         ?>
@@ -183,6 +189,12 @@
                             <a class="nav-link" href="<?= base_url('spt') ?>">
                                 <i class=" icon-docs menu-icon"></i>
                                 <span class="menu-title">Surat Perintah Tugas</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('laporan') ?>">
+                                <i class=" icon-docs menu-icon"></i>
+                                <span class="menu-title">Laporan Penelitian</span>
                             </a>
                         </li>
                     <?php

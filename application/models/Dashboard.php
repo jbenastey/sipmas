@@ -40,4 +40,52 @@ class Dashboard extends CI_Model{
         $query = $this->db->get();
         return $query->num_rows();
     }
+
+    function count_spt(){
+        $this->db->select('*');
+        $this->db->from('sipmas_spt');
+        $this->db->where('spt_status','aktif');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_spt_setuju($param){
+        $this->db->select('*');
+        $this->db->from('sipmas_spt');
+        $this->db->where('spt_status_surat',$param);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_pembimbing(){
+        $this->db->select('*');
+        $this->db->from('sipmas_user');
+        $this->db->where('user_hak_akses','pk');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_laporan(){
+        $this->db->select('*');
+        $this->db->from('sipmas_laporan');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_spt_pk($id,$param){
+        $this->db->select('*');
+        $this->db->from('sipmas_spt');
+        $this->db->where('spt_user_id',$id);
+        $this->db->where('spt_status_surat',$param);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function count_laporan_pk($id){
+        $this->db->select('*');
+        $this->db->from('sipmas_laporan');
+        $this->db->where('laporan_user_id',$id);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
 }

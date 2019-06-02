@@ -31,6 +31,15 @@ class Spt extends CI_Model{
         return $query->row_array();
     }
 
+    function get_spt_user($id){
+        $this->db->select('*');
+        $this->db->from('sipmas_spt');
+        $this->db->join('sipmas_user','sipmas_user.user_id = sipmas_spt.spt_user_id');
+        $this->db->where('spt_id',$id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     function get_spt_detail($id){
         $this->db->select('*');
         $this->db->from('sipmas_spt');

@@ -34,6 +34,9 @@ class User extends CI_Model{
         $query = $this->db->get();
         return $query->row_array();
     }
+    function create_user($data){
+        return $this->db->insert('sipmas_user',$data);
+    }
     function update_user($id,$dataUser){
         $this->db->where('user_id',$id);
         return $this->db->update('sipmas_user',$dataUser);

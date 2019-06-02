@@ -70,4 +70,31 @@ class AuthController extends CI_Controller {
         $this->session->sess_destroy();
         redirect(site_url('login'));
     }
+
+    public function register(){
+        if (isset($_POST['register'])){
+            $nama = $this->input->post('nama');
+            $nomorHp = $this->input->post('nomorHp');
+            $email = $this->input->post('email');
+            $nip = $this->input->post('nip');
+            $jabatan = $this->input->post('jabatan');
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $dataRegister = array(
+                'user_nama' => $nama,
+                'user_nomor_hp' => $nomorHp,
+                'user_email' => $email,
+                'user_nip' => $nip,
+                'user_jabatan' => $jabatan,
+                'user_username' => $username,
+                'user_password' => md5($password),
+                'user_hak_akses' => 'pk'
+            );
+
+            $this->User->create_user($dataRegister);
+            $this->session->set_flashdata('alert', 'success_register');
+            redirect('login');
+        }
+        $this->load->view('backend/auth/register');
+    }
 }

@@ -17,6 +17,7 @@ class SptController extends CI_Controller
         $helper = array('tgl_indo_helper','level_helper');
         $this->load->model($model);
         $this->load->helper($helper);
+        $this->load->library('email');
         if (!$this->session->has_userdata('session_username')) {
             redirect(site_url('login'));
         }
@@ -152,14 +153,37 @@ class SptController extends CI_Controller
     }
 
     public function notification($id){
-        $data = $this->Spt->get_spt_by_id($id);
-        $dataNotif = array(
-            'notifikasi_user_id' => $data['spt_user_id'],
-            'notifikasi_spt_id' => $data['spt_id']
-        );
-        $this->Spt->create_notification($dataNotif);
+        $email = $this->Spt->get_spt_user($id);
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "ssl://smtp.googlemail.com";
+        $config['smtp_port'] = 465;
+        $config['smtp_user'] = "c3.sipmas@gmail.com";
+        $config['smtp_pass'] = "yanglebihkuat";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
 
-        $this->session->set_flashdata('alert', 'notification');
-        redirect('spt/read/'.$id);
+        $this->email->initialize($config);
+        $this->email->from('c3.sipmas@gmail.com', 'Admin Bapas');
+        $list = array($email['user_email']);
+        $this->email->to($list);
+        $this->email->subject('Surat Perintah Tugas');
+        $this->email->message($email['user_nama'].', Surat perintah tugas anda sudah selesai, silahkan cek di aplikasi');
+        if ($this->email->send()) {
+            $this->session->set_flashdata('alert', 'notification');
+            redirect('spt/read/'.$id);
+        } else {
+            show_error($this->email->print_debugger());
+            redirect('spt/read/'.$id);
+        }
+    }
+
+    public function cetak($id){
+        $data['spt'] = $this->Spt->get_spt_by_id($id);
+        $data['detail'] = $this->Spt->get_spt_detail($id);
+        $data['user'] = $this->User->get_user_by_id($data['spt']['spt_user_id']);
+        $this->load->view('templates/header');
+        $this->load->view('backend/spt/cetak', $data);
+        $this->load->view('templates/footer');
     }
 }

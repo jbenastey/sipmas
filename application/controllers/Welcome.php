@@ -20,7 +20,18 @@ class Welcome extends CI_Controller {
         $data['setuju'] = $this->Dashboard->count_permintaan_setuju('setuju');
         $data['tunggu'] = $this->Dashboard->count_permintaan_setuju('tunggu');
         $data['tahanan'] = $this->Dashboard->count_tahanan();
-		$this->load->view('templates/header');
+
+        $data['spt'] = $this->Dashboard->count_spt();
+        $data['sptsetuju'] = $this->Dashboard->count_spt_setuju('setuju');
+        $data['spttunggu'] = $this->Dashboard->count_spt_setuju('tunggu');
+        $data['pembimbing'] = $this->Dashboard->count_pembimbing();
+
+        $data['laporan'] = $this->Dashboard->count_laporan();
+
+        $data['sptpk'] = $this->Dashboard->count_spt_pk($this->session->userdata('session_id'),'setuju');
+        $data['laporanpk'] = $this->Dashboard->count_laporan_pk($this->session->userdata('session_id'));
+
+        $this->load->view('templates/header');
         $this->load->view('backend/index',$data);
         $this->load->view('templates/footer');
 	}

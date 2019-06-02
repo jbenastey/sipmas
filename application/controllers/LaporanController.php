@@ -73,7 +73,4 @@ class LaporanController extends CI_Controller
             redirect('laporan');
         }
     }
-    public function download($id){
-
-    }
 }

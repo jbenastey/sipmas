@@ -15,7 +15,7 @@
                 ?>
                 <div class="alert alert-success animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
                     <button type="button" class="close" data-dismiss="alert"></button>
-                    Asdas
+                    Email pengingat terkirim!
                 </div>
             <?php
             endif;
@@ -46,15 +46,15 @@
                         else:
                             if ($spt['spt_status_surat'] == 'setuju'):
                                 if ($sesLev == 'pk'):?>
-                                    <a href="#" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
+                                    <a href="<?=base_url('/spt/cetak/'.$spt['spt_id'])?>" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="Cetak"><i class="icon-printer menu-icon"></i></a>
                                 <?php
                                 else:?>
-                                    <a href="#" class="btn social-btn btn-primary btn-xs" data-toggle="tooltip"
-                                       data-placement="bottom" onclick="return confirm('Kirim Pengingat ?')"
+                                    <a href="<?= base_url('/spt/notification/'.$spt['spt_id'])?>" class="btn social-btn btn-primary btn-xs" data-toggle="tooltip"
+                                       data-placement="bottom" onclick="return confirm('Kirim Email Pengingat ?')"
                                        title="Kirim Pengingat"><i class="icon-paper-plane menu-icon"></i></a>
-                                    <a href="#" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
+                                    <a href="<?=base_url('/spt/cetak/'.$spt['spt_id'])?>" class="btn social-btn btn-success btn-xs" data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="Cetak"><i class="icon-printer menu-icon"></i></a>
                                 <?php

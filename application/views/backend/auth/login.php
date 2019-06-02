@@ -40,10 +40,15 @@
             <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-full-bg">
                 <div class="row w-100">
                     <div class="col-lg-4 mx-auto">
-                        <?php if ($this->session->flashdata('alert')== 'gagalLogin'){ ?>
+                        <?php if ($this->session->flashdata('alert') == 'gagalLogin'){ ?>
                         <div class="alert alert-danger animated fadeInDown" role="alert">
                             <button type="button" class="close" data-dismiss="alert"></button>
                             Password / Username Salah. Periksa kembali ..
+                        </div>
+                        <?php } elseif ($this->session->flashdata('alert') == 'success_register'){ ?>
+                        <div class="alert alert-success animated fadeInDown" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"></button>
+                            Berhasil Register, Silahkan Login
                         </div>
                         <?php } ?>
                         <div class="auth-form-dark text-left p-5">
@@ -71,7 +76,7 @@
                                 </div>
                                 <?php echo form_close(); ?>
                             <div class="mt-3 text-center">
-                                <a href="#" class="auth-link text-white">Forgot password?</a>
+                                <a href="<?=base_url('register')?>" class="auth-link text-white">Register Pembimbing Kemasyarakatan</a>
                             </div>
                         </div>
                     </div>

@@ -57,12 +57,12 @@
                 <div class="card">
                     <div class="card-body overview">
                         <ul class="achivements">
-                            <li><p>34</p>
-                                <p>Projects</p></li>
-                            <li><p>23</p>
-                                <p>Task</p></li>
-                            <li><p>29</p>
-                                <p>Completed</p></li>
+                            <li><p style="color: white;">34</p>
+                                <p style="color: white;">Projects</p></li>
+                            <li><p style="color: white;">23</p>
+                                <p style="color: white;">Task</p></li>
+                            <li><p style="color: white;">29</p>
+                                <p style="color: white;">Completed</p></li>
                         </ul>
                         <div class="wrapper about-user">
                             <h4 class="card-title mt-4 mb-3"></h4>

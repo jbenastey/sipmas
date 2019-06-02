@@ -16,13 +16,26 @@
                 <div class="col-12">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="order-listing">
-                            <button class="btn btn-primary btn-sm"
-                                    style="float: right; margin-left: 5px" data-toggle="modal"
-                                    data-target="#exampleModal"><i class="icon-cloud-upload"></i>Upload
-                            </button>
+                            <?php
+                            if ($this->session->userdata('session_level') == 'pk'):
+                                ?>
+                                <button class="btn btn-primary btn-sm"
+                                        style="float: right; margin-left: 5px" data-toggle="modal"
+                                        data-target="#exampleModal"><i class="icon-cloud-upload"></i>Upload
+                                </button>
+                            <?php
+                            endif;
+                            ?>
                             <thead>
                             <tr>
                                 <th>No</th>
+                                <?php
+                                if ($this->session->userdata('session_level') != 'pk'):
+                                    ?>
+                                    <th>Nama Pembimbing Kemasyarakatan</th>
+                                <?php
+                                endif;
+                                ?>
                                 <th>Nama Warga Binaan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -30,18 +43,40 @@
                             <tbody>
                             <?php
                             $no = 1;
-                            foreach ($laporan as $l) :
-                                if ($l['laporan_user_id'] == $this->session->userdata('session_id')):
+                            if ($this->session->userdata('session_level') == 'pk'):
+                                foreach ($laporan as $l) :
+                                    if ($l['laporan_user_id'] == $this->session->userdata('session_id')):
+                                        ?>
+                                        <tr>
+                                            <td><?= $no ?></td>
+                                            <td><?= $l['detail_nama'] ?></td>
+                                            <td>
+                                                <a href="<?= base_url('assets/upload/laporan/' . $l['laporan_upload']) ?>"
+                                                   class="btn btn-outline-primary btn-sm"
+                                                   onclick="return confirm('Download ?')"><i class="fa fa-download"></i>Download</a>
+                                            </td>
+                                        </tr>
+
+                                        <?php
+                                        $no++;
+                                    endif;
+                                endforeach;
+                            else:
+                                foreach ($laporan as $l):
                                 ?>
                                 <tr>
                                     <td><?= $no ?></td>
+                                    <td><?= $l['user_nama'] ?></td>
                                     <td><?= $l['detail_nama'] ?></td>
-                                    <td><a href="<?= base_url('assets/upload/laporan/'.$l['laporan_upload'])?>" class="btn btn-outline-primary btn-sm" onclick="return confirm('Download ?')"><i class="fa fa-download"></i>Download</a></td>
+                                    <td><a href="<?= base_url('assets/upload/laporan/' . $l['laporan_upload']) ?>"
+                                           class="btn btn-outline-primary btn-sm"
+                                           onclick="return confirm('Download ?')"><i class="fa fa-download"></i>Download</a>
+                                    </td>
                                 </tr>
-                                <?php
+                            <?php
                                 $no++;
-                                endif;
-                            endforeach;
+                                endforeach;
+                            endif;
                             ?>
                             </tbody>
                         </table>
