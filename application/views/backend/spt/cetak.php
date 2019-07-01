@@ -48,7 +48,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header d-print-none">
-                <button onclick="window.print()" class="btn btn-info"><i class="fe fe-printer"></i></button>
+                <button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</button>
             </div>
             <div class="card-body">
                 <div class="row" style="display: flex;">
@@ -113,10 +113,35 @@
                                 <p>Untuk &nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;:</p>
                             </div>
                             <div class="col-10">
-                                <p>Nama &emsp;&emsp;&emsp;: <?=$user['user_nama']?></p>
-                                <p>Nip &emsp;&emsp;&emsp;&emsp;: <?=$user['user_nip']?></p>
-                                <p>Jabatan &emsp;&emsp;: <?=$user['user_jabatan']?></p>
+                                <p>1. Melaksanakan Penelitian Kemasyarakatan untuk Usul Pembebasan Bersyarat dan Usul Cuti Bersyarat (CB)</p>
+								<p>2. Surat Perintah ini berlaku dari tanggal <?=date_indo($spt['spt_berlaku'])?> s/d Selesai</p>
+								<p>3. Melaksanakan Perintah ini dengan seksama dan penuh tanggung jawab</p>
+								<p>4. Melaporkan hasil pelaksanaannya kepada atasan langsung</p>
                             </div>
+							<div class="col-4">
+
+							</div>
+							<div class="col-4">
+								<br>
+								<p>Pekanbaru, <?=date_indo($spt['spt_berlaku'])?></p>
+								<p><br></p>
+								<p><br></p>
+								<p><br></p>
+								<p>Patta Helena</p>
+								<p>NIP. 197304211993032001</p>
+							</div>
+							<div class="col-4">
+
+							</div>
+							<div class="col-4">
+								<p>Tembusan : </p>
+								<p>Ka. Lapas II B Pekanbaru</p>
+								<p>Mengetahui : </p>
+								<p><br></p>
+								<p><br></p>
+								<p><br></p>
+								<p>(.........................................)</p>
+							</div>
                         </div>
                     </div>
                 </div>

@@ -53,8 +53,8 @@ class LaporanController extends CI_Controller
 
                 $error = array('error' => $this->upload->display_errors());
                 var_dump($error);
-
-                redirect('laporan');
+				$this->session->set_flashdata('alert', 'tipe_gaboleh');
+                redirect('laporan',$error);
             } else {
                 $detailId = $this->input->post('detailId');
 
@@ -66,6 +66,7 @@ class LaporanController extends CI_Controller
                     'laporan_detail_id' => $detailId,
                 );
 
+				$this->session->set_flashdata('alert', 'berhasil_upload');
                 $this->Laporan->create_laporan($dataUpload);
                 redirect('laporan');
             }

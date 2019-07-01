@@ -10,9 +10,25 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <?= $error ?>
             <h4 class="card-title">Laporan Penelitian Kemasyarakatan</h4>
             <div class="row">
+				<?php
+                if ($this->session->flashdata('alert') == 'tipe_gaboleh'):
+                    ?>
+				<div class="alert alert-danger animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
+					<button type="button" class="close" data-dismiss="alert"></button>
+					Tipe file tidak sesuai
+				</div>
+				<?php
+				elseif ($this->session->flashdata('alert') == 'berhasil_upload'):
+					?>
+					<div class="alert alert-success animated fadeInDown" id="feedback" role="alert" style="width: 100%;">
+						<button type="button" class="close" data-dismiss="alert"></button>
+						Berhasil upload
+					</div>
+				<?php
+				endif;
+				?>
                 <div class="col-12">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="order-listing">
